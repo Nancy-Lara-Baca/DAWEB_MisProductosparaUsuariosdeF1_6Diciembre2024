@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block cuerpo %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <!--la tarjeta card-->
+        <div class="card"> <!-- tarjeta -->
+            <div class="card-body">
+                <form action="/editarLocal/" method="POST"> {% csrf_token %} <!-- formulario-->
+                    
+                    <div class="form-group">
+                        <input type="number" name="numid_local" class="form-control" value="{{mislocales.id_local}}" maxLength="6" readonly required >
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="text" name="txtdireccion" class="form-control" value="{{mislocales.direccion}}" maxLength="100" required >
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="text" name="txtgerente" class="form-control" value="{{mislocales.gerente}}" maxLength="100" required >
+                    </div>
+
+                    <div class="form-group py-3">
+                        <input type="number" name="numempleados" class="form-control" value="{{mislocales.empleados}}" required >
+                    </div>
+
+                    <div class="form-group py-3">
+                        <input type="number" name="numcantidad_productos" class="form-control" value="{{mislocales.cantidad_productos}}"  required >
+                    </div>
+                    
+                    <div class="form-group py-3">
+                        <input type="number" name="numnum_telefono" class="form-control" value="{{mislocales.num_telefono}}" required >
+                    </div>
+
+                    <div class="form-group py-2">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form> <!-- formulario-->
+            </div>
+            </div>
+
+        <!--fin de la tarjeta card-->
+
+    </div> <!--columna-->
+</div> <!--fila-->
+
+
+{% endblock %}
