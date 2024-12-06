@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load static %}
+{% block cuerpo %}
+<div class="row"><!--La Fila-->
+    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4"><!-- columna izquierda-->
+    <h1>Registrar Local</h1>
+    <div class="card"> <!-- tarjeta -->
+        <div class="card-body">
+            <form action="/registrarLocal/" method="POST"> {% csrf_token %} <!-- formulario-->
+                <div class="form-group">
+                    <input type="number" name="numid_local" class="form-control" placeholder="Id Local" maxLength="100" required >
+                </div>
+                <div class="form-group py-3">
+                    <input type="text" name="txtdireccion" class="form-control" placeholder="Direccion" minLength="6" maxLength="100" required >
+                </div>
+                <div class="form-group py-3">
+                    <input type="text" name="txtgerente" class="form-control" placeholder="Gerente" maxLength="100" required >
+                </div>
+                <div class="form-group py-3">
+                    <input type="number" name="numempleados" class="form-control" placeholder="Empleados" maxLength="100" required >
+                </div>
+                <div class="form-group py-3">
+                    <input type="number" name="numcantidad_productos" class="form-control" placeholder="Cantidad de Productos" maxLength="100" required >
+                </div>
+                <div class="form-group py-3">
+                    <input type="number" name="numnum_telefono" class="form-control" placeholder="Numero de Telefono" minLength="6" maxLength="100" required >
+                </div>
+                <div class="form-group py-2">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form> <!-- formulario-->
+        </div>
+        </div>
+</div><!-- columna izquierda-->
+<div class="col-sm-12 col-md-8 col-lg-8 col-xl-8"> <!-- columna derecha-->
+    <img class="w-50" src="{% static 'img/Tienda_F1.png' %}" width="600" height="300" alt="">
+        <h1>Locales</h1>
+<div class="table-responsive"><!-- tabla responsiva-->
+    
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Id Local</th>
+            <th scope="col">Direccion</th>
+            <th scope="col">Gerente</th>
+            <th scope="col">Empleados</th>
+            <th scope="col">Cantidad de Productos</th>
+            <th scope="col">Numero de Telefono</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for local in mislocales %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{local.id_local}}</td>
+                <td>{{local.direccion}}</td>
+                <td>{{local.gerente}}</td>
+                <td>{{local.empleados}}</td>
+                <td>{{local.cantidad_productos}}</td>
+                <td>{{local.num_telefono}}</td>
+                <td><a href="seleccionarLocal/{{local.id_local}}" class="btn btn-info">Editar</a></td>
+                <td><a href="borrarLocals/{{local.id_local}}" class="btn btn-danger">Borrar</a></td>
+            </tr>
+            
+            
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+</div><!-- columna derecha-->
+</div><!--La Fila-->
+{% endblock %}
